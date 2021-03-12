@@ -14,5 +14,21 @@
     "manufacturer": "Volkswagen",
     "fuel_type": "Petrol",
     "description": "Good Value"
+  },
+  {
+    "id": 3,
+    "type": "Manual",
+    "name": "Audi the road master",
+    "manufacturer": "Audi",
+    "fuel_type": "Petrol",
+    "description": "Good Value"
+  },
+  {
+    "id": 4,
+    "type": "Manual",
+    "name": "Audi the road master",
+    "manufacturer": "Audi",
+    "fuel_type": "Petrol",
+    "description": "Good Value"
   }
 ]

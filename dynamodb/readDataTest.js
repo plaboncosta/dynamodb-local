@@ -1,15 +1,8 @@
-const AWS = require('aws-sdk');
+const docClient = require('../config/docClient');
 
-AWS.config.update({
-    accessKeyId: "123456",
-    secretAccessKey: "123456",
-    region: "local",
-    endpoint: "http://localhost:8000"
-});
-
-const docClient = new AWS.DynamoDB.DocumentClient();
 const table = "Cars";
 const id = 2;
+
 const params = {
     TableName: table,
     Key: {
@@ -17,7 +10,7 @@ const params = {
     }
 };
 
-docClient.get(params, function(err, data) {
+docClient.get(params, function (err, data) {
     if (err) {
         console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
     } else {

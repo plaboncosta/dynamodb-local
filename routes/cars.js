@@ -3,7 +3,7 @@ const router = express.Router();
 const docClient = require('../config/docClient');
 
 /* GET All Cars Data */
-router.get('/all', function (req, res, next) {
+router.get('/all', function (req, res) {
     const params = {
         TableName: "Cars",
         ProjectionExpression: "#id, #name, #type, #manufacturer, #fuel_type, #description",
@@ -55,5 +55,62 @@ router.get('/:id', (req, res) => {
         }
     });
 });
+
+
+/* Get Car by Type */
+router.get('/by/type', (req, res) => {
+    const {type} = req.query;
+    /*const params = {
+        TableName: "Cars",
+        ProjectionExpression: "#id, #name, #type, #manufacturer, #fuel_type, #description",
+        FilterExpression: "#id",
+        ExpressionAttributeNames: {
+            "#id": "id",
+            "#type": "type",
+            "#name": "name",
+            "#manufacturer": "manufacturer",
+            "#fuel_type": "fuel_type",
+            "#description": "description"
+        },
+        ExpressionAttributeValues: {
+            ":id": 1
+        }
+    }*/
+
+    /*const params = {
+        TableName: "Cars",
+        ProjectionExpression: "#id, #name, #type",
+        FilterExpression: "#id between :start_yr and :end_yr",
+        ExpressionAttributeNames: {
+            "#id": "id",
+        },
+        ExpressionAttributeValues: {
+            ":start_yr": 1,
+            ":end_yr": 2
+        }
+    };*/
+
+    const params = {
+        TableName: "Cars",
+        ProjectionExpression: "#id, #name, #type, #manufacturer, #fuel_type, #description",
+        ExpressionAttributeNames: {
+            "#id": "id",
+            "#type": "type",
+            "#name": "name",
+            "#manufacturer": "manufacturer",
+            "#fuel_type": "fuel_type",
+            "#description": "description"
+        },
+        FilterExpression: "#id",
+        ExpressionAttributeValues: {
+            ":id": 1
+        }
+    };
+
+    docClient.scan(params, function (err, data) {
+        if (err) console.error(JSON.stringify(err, null, 2));
+        else res.send(data);
+    })
+})
 
 module.exports = router;

@@ -1,14 +1,6 @@
-const AWS = require('aws-sdk');
+const docClient = require('../config/docClient');
 const fs = require('fs');
 
-AWS.config.update({
-    accessKeyId: "123456",
-    secretAccessKey: "123456",
-    region: "local",
-    endpoint: "http://localhost:8000"
-});
-
-const docClient = new AWS.DynamoDB.DocumentClient();
 console.log("Importing Cars into DynamoDB. Please wait.");
 
 const cars = JSON.parse(fs.readFileSync('./carData.json', 'utf-8'));
