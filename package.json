@@ -7,7 +7,8 @@
     "create-db": "cd dynamodb && node createCarsTable.js && cd ..",
     "delete-db": "cd dynamodb && node deleteCarsTable.js && cd ..",
     "load-data": "cd dynamodb && node loadCarData.js && cd ..",
-    "read-data": "cd dynamodb && node readDataTest.js && cd .."
+    "read-data": "cd dynamodb && node readDataTest.js && cd ..",
+    "happy-project": "cd dynamodb && node happy-project.js && cd .."
   },
   "dependencies": {
     "aws-sdk": "^2.861.0",
@@ -15,7 +16,9 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "install": "^0.13.0",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "uuid": "^8.3.2"
   }
 }

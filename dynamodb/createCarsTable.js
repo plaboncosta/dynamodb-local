@@ -1,13 +1,5 @@
-const AWS = require('aws-sdk');
+const dynamoDB = require('../config/dynamoDB');
 
-AWS.config.update({
-    accessKeyId: "123456",
-    secretAccessKey: "123456",
-    region: "local",
-    endpoint: "http://localhost:8000"
-});
-
-const dynamoDB = new AWS.DynamoDB();
 const params = {
     TableName: "Cars",
     KeySchema: [
