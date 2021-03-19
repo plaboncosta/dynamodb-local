@@ -9,12 +9,14 @@
   {
     "SK": "PRO#agile#e343a14a-04cf-4305-9487-a78c58b358b7",
     "name": "Project B",
+    "Data": "PRO#Project B",
     "PK": "ORG#d3fda4e6-e34a-4caf-8ede-a6d6c23d2a67",
     "project_id": "e343a14a-04cf-4305-9487-a78c58b358b7"
   },
   {
     "SK": "PRO#fix-bid#670ca9d7-0872-4839-aa34-f99796ec56b4",
     "name": "Project A",
+    "Data": "PRO#Project A",
     "PK": "ORG#d3fda4e6-e34a-4caf-8ede-a6d6c23d2a67",
     "project_id": "670ca9d7-0872-4839-aa34-f99796ec56b4"
   },
@@ -28,12 +30,14 @@
   {
     "SK": "EMP#1bbfac01-ec8c-43d6-be06-b44f6b40b256",
     "name": "Manoj",
+    "Data": "EMP#Manoj",
     "PK": "ORG#f54e9704-b573-43cb-899b-a5e03b8ac9ec",
     "email": "manoj@email.com"
   },
   {
     "SK": "EMP#342bb3ab-77a3-46f7-b084-880b6beb6e3b",
     "name": "Jane Doe",
+    "Data": "EMP#Jane Doe",
     "PK": "ORG#f54e9704-b573-43cb-899b-a5e03b8ac9ec",
     "email": "janedoe@email.com"
   },

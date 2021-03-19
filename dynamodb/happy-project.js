@@ -25,6 +25,10 @@ const fs = require('fs');
         {
             AttributeName: 'SK',
             AttributeType: 'S'
+        },
+        {
+            AttributeName: 'Data',
+            AttributeType: 'S'
         }
     ],
     ProvisionedThroughput: {
@@ -41,6 +45,25 @@ const fs = require('fs');
             {
                 AttributeName: "PK",
                 KeyType: "RANGE"
+            }
+        ],
+        Projection: {
+            ProjectionType: "ALL"
+        },
+        ProvisionedThroughput: {
+            ReadCapacityUnits: 5,
+            WriteCapacityUnits: 5
+        }
+    }, {
+        IndexName: 'Filter-by-name',
+        KeySchema: [
+            {
+                AttributeName: 'PK',
+                KeyType: 'HASH'
+            },
+            {
+                AttributeName: 'Data',
+                KeyType: 'RANGE'
             }
         ],
         Projection: {
@@ -279,8 +302,8 @@ docClient.query(params, function (err, data) {
 
 
 /* Find projects an employee is part of - Using an inverted index */
-const happyIncOrgId = 'f54e9704-b573-43cb-899b-a5e03b8ac9ec';
-const empId = '342bb3ab-77a3-46f7-b084-880b6beb6e3b';
+/*const happyIncOrgId = 'f54e9704-b573-43cb-899b-a5e03b8ac9ec';
+const empId = '1bbfac01-ec8c-43d6-be06-b44f6b40b256';
 
 const params = {
     TableName: 'happy-projects',
@@ -295,7 +318,48 @@ const params = {
 docClient.query(params, function (err, data) {
     if (err) console.log(err);
     else console.log(data);
-});
+});*/
+
+
+/* Entry Filter by name data */
+/*const orgId = 'f54e9704-b573-43cb-899b-a5e03b8ac9ec';
+const projectId = '670ca9d7-0872-4839-aa34-f99796ec56b4';
+const employeeId = '342bb3ab-77a3-46f7-b084-880b6beb6e3b';
+
+const params = {
+    TableName: 'happy-projects',
+    Key: {PK: `ORG#${orgId}`, SK: `EMP#${employeeId}`},
+    UpdateExpression: 'set #Data = :Data',
+    ExpressionAttributeNames: {'#Data': 'Data'},
+    ExpressionAttributeValues: {
+        ':Data': 'EMP#Jane Doe'
+    }
+};
+
+docClient.update(params, function (err, data) {
+    if (err) console.log(err);
+    else console.log(data);
+});*/
+
+
+/* Filter Employee/Project by name */
+/*const orgId = 'f54e9704-b573-43cb-899b-a5e03b8ac9ec';
+
+const params = {
+    TableName: 'happy-projects',
+    IndexName: 'Filter-by-name',
+    KeyConditionExpression: '#PK = :PK and begins_with(#SK, :SK)',
+    ExpressionAttributeNames: {'#PK': 'PK', '#SK': 'Data'},
+    ExpressionAttributeValues: {
+        ':PK': `ORG#${orgId}`,
+        ':SK': 'EMP#M'
+    }
+};
+
+docClient.query(params, function (err, data) {
+    if (err) console.log(err);
+    else console.log(data);
+});*/
 
 
 /* Get All Item From Dynamodb */
